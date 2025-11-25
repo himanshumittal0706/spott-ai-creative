@@ -2,6 +2,7 @@ import React from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { Button } from './ui/button';
 
 const Header = () => {
     return (
@@ -18,34 +19,33 @@ const Header = () => {
 
                     <SignedOut>
                         <SignInButton mode="modal">
-                            <button className="text-sm font-medium text-white px-4 py-2 rounded-full border border-white/20  hover:border-[#6c47ff]  transition-all duration-300">
-                                Sign In
-                            </button>
+                            <button className="bg-blue-600 text-white px-4 py-2 rounded">Sign In</button>
                         </SignInButton>
-
-                        <SignUpButton mode="modal">
-                            <button className="  bg-[#6c47ff] text-white   rounded-full font-medium  text-sm px-5 py-2  hover:bg-[#5934f5] transition-all duration-300">
-                                Sign Up
-                            </button>
-                        </SignUpButton>
                     </SignedOut>
 
                     <SignedIn>
-                        <UserButton
-                            appearance={{
-                                elements: {
-                                    avatarBox: "ring-2 ring-[#6c47ff] rounded-full",
-                                },
-                            }}
-                        />
+                        <UserButton afterSignOutUrl="/" />
                     </SignedIn>
+
+                    {/* <SignedOut>
+                        <SignInButton mode="modal">
+                            <Button size="sm">Sign In</Button>
+                        </SignInButton>
+                    </SignedOut>
+
+                    <SignedIn>
+                        <UserButton />
+                    </SignedIn> */}
 
                 </div>
             </div>
-        </nav>
+        </nav >
     );
 };
 
 export default Header;
+
+
+
 
 

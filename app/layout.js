@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import Footer from "@/components/footer";
+import { dark } from "@clerk/themes";
 
 
 export const metadata = {
@@ -17,9 +18,9 @@ export default function RootLayout({ children }) {
       <body className={`bg-linear-to-br from-gray-950 via-zinc-900 to-stone-900 text-white`}>
 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <ClerkProvider>
+          <ClerkProvider appearance={{ baseTheme: dark }}>
             <ConvexClientProvider>
-              {/* Header */}
+
               <Header />
 
               <main className="relative min-h-screen container mx-auto pt-40 md:pt-32">
@@ -42,7 +43,6 @@ export default function RootLayout({ children }) {
     </html >
   );
 }
-
 
 
 
