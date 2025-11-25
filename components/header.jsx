@@ -17,7 +17,7 @@ const Header = () => {
 
                     <SignedOut>
                         <SignInButton mode="modal">
-                            <Button size="sm">Sign dsfhasdfh In</Button>
+                            <Button size="sm">SignIn</Button>
                         </SignInButton>
                     </SignedOut>
 
