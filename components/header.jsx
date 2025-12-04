@@ -15,15 +15,17 @@ const Header = () => {
 
                 <div className="flex items-center gap-4">
 
+                    <SignedIn>
+                        {/* Create Event */}
+
+                        <UserButton />
+                    </SignedIn>
+
                     <SignedOut>
                         <SignInButton mode="modal">
                             <Button size="sm">SignIn</Button>
                         </SignInButton>
                     </SignedOut>
-
-                    <SignedIn>
-                        <UserButton />
-                    </SignedIn>
 
                 </div>
             </div>
@@ -32,6 +34,7 @@ const Header = () => {
 };
 
 export default Header;
+
 
 
 
