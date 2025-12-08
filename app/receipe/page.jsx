@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function AllUserPage() {
-    const [allUsers, setAllUsers] = useState([]);
+    const [receipe, setReceipe] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -20,13 +21,9 @@ export default function AllUserPage() {
 
             const result = await response.json();
 
-            // const usersArray = Array.isArray(result)
-            //     ? result
-            //     : result?.data || [];
+            setReceipe(result.recipes);
 
-            setAllUsers(result.recipes);
-
-            console.log("Fetched users:", setAllUsers);
+            console.log("Fetched recipes:", result.recipes);
         } catch (err) {
             console.error("Error fetching all users:", err);
             setError(err.message || "Something went wrong");
@@ -51,22 +48,21 @@ export default function AllUserPage() {
                 </div>
             )}
 
-            {!loading && !error && allUsers.length === 0 && (
+            {!loading && !error && receipe.length === 0 && (
                 <div className="text-center py-8 text-gray-500">
                     No users found
                 </div>
             )}
 
-            {!loading && !error && allUsers.length > 0 && (
+            {!loading && !error && receipe.length > 0 && (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {allUsers.map((user) => (
-                        <div key={user.id} className="border rounded-lg p-4 shadow hover:shadow-lg transition">
-                            <h2 className="text-lg font-semibold">
-                                {user.name}
-                            </h2>
-                            {/* <p className="text-gray-600">
-                                {user.clientName}
-                            </p> */}
+                    {receipe.map((recipe) => (
+                        <div key={recipe.id} className="border rounded-lg p-4 shadow hover:shadow-lg transition" >
+                            <Link href={`/receipe/${recipe.id}`}>
+                                <h2 className="text-lg font-semibold hover:underline cursor-pointer">
+                                    {recipe.name}
+                                </h2>
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -76,8 +72,20 @@ export default function AllUserPage() {
 }
 
 
-
-
-
-
+// {
+//     !loading && !error && receipe.length > 0 && (
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+//             {receipe.map((user) => (
+//                 <div key={user.id} className="border rounded-lg p-4 shadow hover:shadow-lg transition">
+//                     <h2 className="text-lg font-semibold">
+//                         {user.name}
+//                     </h2>
+//                     {/* <p className="text-gray-600">
+//                                 {user.clientName}
+//                             </p> */}
+//                 </div>
+//             ))}
+//         </div>
+//     )
+// }
 
